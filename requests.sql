@@ -17,3 +17,10 @@ FROM "Sales_facts" s, "Product_dim" p, "Date_dim" d
 WHERE s.id_product = p.id_product AND s.id_date = d.id_date
 GROUP BY CUBE (category, quarter)
 
+/*sales total per product category, per color*/
+SELECT p.category, p.color, SUM(s.quantity) AS total_quantity
+FROM "Sales_facts" s, "Product_dim" p
+WHERE s.id_product = p.id_product
+GROUP BY p.category, p.color
+ORDER BY p.category, total_quantity DESC
+
