@@ -7,6 +7,8 @@ def load_products(cursor):
     # keep the columns that we need
     products_df = products_df.loc[:, ["ProductKey", "Product", "Category", "Subcategory", "Color"]]
 
+    # handle NaN values in color column
+    products_df["Color"].fillna("Other", inplace=True)
 
     # Convert data to load it in postgres
     products_df["ProductKey"] = products_df["ProductKey"].astype(str)
