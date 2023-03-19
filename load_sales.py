@@ -15,6 +15,9 @@ def load_sales(cursor):
     sales_df["Unit Price"] = sales_df["Unit Price"].str.replace(",", "").str.replace("$", "").astype(float)
     sales_df["Cost"] = sales_df["Cost"].str.replace(",", "").str.replace("$", "").astype(float)
 
+    # the cost column represent the cost of the quantity sold
+    # we modify it to get the cost per unit
+    sales_df["Cost"] /= sales_df["Quantity"]
 
     # date format dd/mm/yyy
     sales_df["OrderDate"] = pd.to_datetime(sales_df["OrderDate"]).dt.strftime('%d/%m/%Y')
