@@ -13,6 +13,7 @@ def create_tables():
         """,
         """
         CREATE TABLE "Sales_facts" (
+          "id_sale" int PRIMARY KEY,
           "unit_price" decimal,
           "cost" decimal,
           "quantity" int,

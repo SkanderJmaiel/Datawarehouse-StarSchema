@@ -1,10 +1,5 @@
-DROP TABLE IF EXISTS "Sales_facts" CASCADE;
-DROP TABLE IF EXISTS "Product_dim" CASCADE;
-DROP TABLE IF EXISTS "Reseller_dim" CASCADE;
-DROP TABLE IF EXISTS "Localization_dim" CASCADE;
-DROP TABLE IF EXISTS "Date_dim" CASCADE;
-
 CREATE TABLE "Sales_facts" (
+  "id_sale" int PRIMARY KEY,
   "unit_price" decimal,
   "cost" decimal,
   "quantity" int,

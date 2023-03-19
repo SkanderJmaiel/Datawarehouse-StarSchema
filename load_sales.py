@@ -36,6 +36,9 @@ def load_sales(cursor):
     # merge sales and the merged_df to add localizationkey
     sales_df = sales_df.merge(df_merged[['ResellerKey', 'LocalizationKey']], on='ResellerKey', how='left')
 
+    # add SaleKey column to sales_df
+    sales_df = sales_df.reset_index(drop=True).reset_index().rename(columns={'index': 'SaleKey'})
+    sales_df['SaleKey'] += 1
 
     # Convert data to load it in postgres
     sales_df["Quantity"] = sales_df["Quantity"].astype(str)
@@ -44,13 +47,14 @@ def load_sales(cursor):
     sales_df["ProductKey"] = sales_df["ProductKey"].astype(str)
     sales_df["ResellerKey"] = sales_df["ResellerKey"].astype(str)
     sales_df["LocalizationKey"] = sales_df["LocalizationKey"].astype(str)
+    sales_df["SaleKey"] = sales_df["SaleKey"].astype(str)
 
     # convert dataframe in records
     records = list(sales_df.to_records(index=False))
-
+    
 
     # insert records in table Sales_facts
-    query = 'INSERT INTO "Sales_facts" (quantity, unit_price, cost, id_product, id_reseller, id_date, id_localization) VALUES (CAST(%s AS INTEGER), CAST(%s AS DECIMAL), CAST(%s AS DECIMAL), CAST(%s AS INTEGER),CAST(%s AS INTEGER), %s, CAST(%s AS INTEGER))'
+    query = 'INSERT INTO "Sales_facts" (id_sale, quantity, unit_price, cost, id_product, id_reseller, id_date, id_localization) VALUES (CAST(%s AS INTEGER), CAST(%s AS INTEGER), CAST(%s AS DECIMAL), CAST(%s AS DECIMAL), CAST(%s AS INTEGER),CAST(%s AS INTEGER), %s, CAST(%s AS INTEGER))'
     cursor.executemany(query, records)
 
 
