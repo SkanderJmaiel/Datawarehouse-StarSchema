@@ -1,11 +1,5 @@
 import psycopg2
-
-# Start pgsql server : c
-DB_NAME = "postgres"
-DB_USER = "postgres"
-DB_HOST = "localhost"
-DB_PORT = "5432"
-DB_PASS = "password"
+from config import *
 
 def db_connect():
     try:
@@ -20,11 +14,4 @@ def db_connect():
     except:
         print("Database not connected successfully")
     
-
-#regions = pd.read_csv('data/region.csv', sep='\t')
-#sales = pd.read_csv('data/sales.csv', sep='\t')
-#resellers = pd.read_csv('data/reseller.csv', sep='\t')
-#products = pd.read_csv('data/product.csv', sep='\t')
-
-
 

@@ -7,11 +7,8 @@ def load_resellers(cursor):
     # keep the 3 columns that we need
     resellers_df = resellers_df.loc[:, ["ResellerKey", "Business Type", "Reseller"]]
 
-
-
     # Convert data to load it in postgres
     resellers_df["ResellerKey"] = resellers_df["ResellerKey"].astype(str)
-
 
     # convert dataframe in records
     records = list(resellers_df.to_records(index=False))
