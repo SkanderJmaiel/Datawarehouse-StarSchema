@@ -10,3 +10,10 @@ FROM "Sales_facts" s, "Date_dim" d, "Reseller_dim" r
 WHERE s.id_reseller = r.id_reseller AND s.id_date = d.id_date AND d.year = 2019
 GROUP BY ROLLUP (reseller_name, s.id_date)
 ORDER BY reseller_name, id_date;
+
+/*total revenue per quarter for each product category*/
+SELECT category, quarter, SUM(unit_price * quantity) AS revenue
+FROM "Sales_facts" s, "Product_dim" p, "Date_dim" d
+WHERE s.id_product = p.id_product AND s.id_date = d.id_date
+GROUP BY CUBE (category, quarter)
+
