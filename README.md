@@ -76,7 +76,7 @@ Les données utilisées dans ce projet proviennent de la base de données Advent
 
 ## Authors
 
-1. Skander JMAIEL
-2. Aboubacar CAMARA
-3. Islam MASSAT
-4. Marius GUITTON-FRANTZ
+- Skander JMAIEL
+- Aboubacar CAMARA
+- Islam MASSAT
+- Marius GUITTON-FRANTZ
