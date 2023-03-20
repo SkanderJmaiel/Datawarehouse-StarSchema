@@ -1,4 +1,11 @@
 import pandas as pd
+import random
+
+def handle_cost(row):
+    if row['Cost'] > row['Unit Price']:
+        return row['Unit Price'] * random.uniform(0.85, 0.95)
+    else:
+        return row['Cost']
 
 
 def load_sales(cursor):
@@ -18,6 +25,9 @@ def load_sales(cursor):
     # the cost column represent the cost of the quantity sold
     # we modify it to get the cost per unit
     sales_df["Cost"] /= sales_df["Quantity"]
+
+    # modify cost if cost > unit price
+    sales_df['Cost'] = sales_df.apply(handle_cost, axis=1)
 
     # date format dd/mm/yyy
     sales_df["OrderDate"] = pd.to_datetime(sales_df["OrderDate"]).dt.strftime('%d/%m/%Y')

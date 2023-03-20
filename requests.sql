@@ -20,33 +20,31 @@ GROUP BY CUBE (category, quarter)
 ORDER BY category, quarter;
 
 /* total sales on helmets and clothing product, per color */
-SELECT p.subcategory, p.color, SUM(s.quantity) AS total_quantity
+SELECT subcategory, color, SUM(quantity) AS total_quantity
 FROM "Sales_facts" s, "Product_dim" p
-WHERE s.id_product = p.id_product AND (p.subcategory = 'Helmets' OR p.category = 'Clothing')
-GROUP BY ROLLUP (p.subcategory, p.color)
-ORDER BY p.subcategory;
+WHERE s.id_product = p.id_product AND (subcategory = 'Helmets' OR category = 'Clothing')
+GROUP BY ROLLUP (subcategory, color)
+ORDER BY subcategory;
 
 /* rank on revenue of bikes sales */
-SELECT p.product_name, SUM((s.unit_price - s.cost) * s.quantity) AS revenue, RANK() OVER (ORDER BY SUM((s.unit_price - s.cost) * s.quantity) DESC) AS rank
+SELECT product_name, SUM((unit_price - cost) * quantity) AS revenue, RANK() OVER (ORDER BY SUM((unit_price - cost) * quantity) DESC) AS rank
 FROM "Sales_facts" s, "Product_dim" p
 WHERE s.id_product = p.id_product AND p.category = 'Bikes'
-GROUP BY p.product_name
+GROUP BY product_name
 ORDER BY revenue DESC;
 
 /* top 10 products sold in term of quantity */
-SELECT s.id_product, p.product_name, SUM(s.quantity) AS total_quantity
+SELECT s.id_product, product_name, SUM(quantity) AS total_quantity
 FROM "Sales_facts" s, "Product_dim" p
 WHERE s.id_product = p.id_product
-GROUP BY s.id_product, p.product_name
+GROUP BY s.id_product, product_name
 ORDER BY total_quantity DESC
 LIMIT 10;
 
 /* rank of sales quantity for each day of the week in each country*/
 SELECT day_of_the_week, country, SUM(quantity) AS total_quantity, RANK() OVER ( PARTITION BY country ORDER BY SUM(quantity) DESC) AS day_rank
-FROM
-"Sales_facts"
-JOIN "Date_dim" ON "Sales_facts".id_date = "Date_dim".id_date
-JOIN "Localization_dim" ON "Sales_facts".id_localization = "Localization_dim".id_localization
+FROM "Sales_facts" s, "Date_dim" d, "Localization_dim" l
+WHERE s.id_date = d.id_date AND s.id_localization = l.id_localization
 GROUP BY GROUPING SETS ((day_of_the_week, country), (day_of_the_week))
 ORDER BY country, day_rank;
 
