@@ -1,9 +1,9 @@
 /*Sommes des ventes par pays et par année*/
-SELECT l.country, d.year, SUM(f.unit_price * f.quantity) as total_sales
+SELECT country, year, SUM(unit_price * quantity) as total_sales
 FROM "Sales_facts" f, "Localization_dim" l, "Date_dim" d
 WHERE f.id_localization = l.id_localization AND f.id_date = d.id_date 
-GROUP BY CUBE (l.country, d.year)
-ORDER BY l.country, d.year;
+GROUP BY CUBE (country, year)
+ORDER BY country, year;
 
 /*the running total of revenue for each reseller, sorted by reseller name and date*/
 SELECT reseller_name, s.id_date, SUM(unit_price * quantity) AS running_total

@@ -28,7 +28,7 @@ Le schéma de base de données utilisé dans ce projet est un schéma en étoile
 
 
 
-<img src="schema.jpg"  width="800">
+<img src="img/schema.jpg"  width="800">
 
 
 
