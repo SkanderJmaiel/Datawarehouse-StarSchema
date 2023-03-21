@@ -31,7 +31,7 @@ La requête suivante permet de donner le rôle user_readonly à l'utilisateur jh
 GRANT user_readonly TO jhonDoe;
 ```
 
-# Mise en place VPD
+# Virtual Private Databases - VPD
 
 ## Configuration du paramère "app.user_country" pour l'utilisateur "jhonDoe"
 
