@@ -70,6 +70,8 @@ GROUP BY l.country
 ORDER BY total_sales DESC;
 
 ```
+
+D'autres exemples sont disponibles dans le fichier [requests.sql](requests.sql)
 ## Licence 
 
 Les données utilisées dans ce projet proviennent de la base de données AdventureWorks de Microsoft, sous licence GNU Lesser General Public License 3.0. Le jeu de données a été obtenu à partir de Kaggle, et vous pouvez trouver plus d'informations sur la licence dans la page Kaggle correspondante. Vous trouverez le lien vers la page dans l'introduction du fichier readme.
