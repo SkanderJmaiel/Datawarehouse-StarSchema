@@ -1,9 +1,9 @@
 # Datawarehouse-StarSchema
 
 
-Ce projet consiste à créer un data warehouse à partir d'un fichier CSV repsésentant un échantillon de la base de données AdventureWorks, qui a été récupéré sur Kaggle.
+Ce projet consiste à créer un data warehouse à partir d'un fichier CSV repsésentant un échantillon de la base de données AdventureWorks, qui a été récupérée sur Kaggle.
 
-La base de données "AdventureWorks" est une base de données de test créée par Microsoft et représente les ventes au détail de produit de cyclisme d'une entreprise fictive. L'objectif du projet est donc d'analyser les ventes de cet entreprise.
+La base de données "AdventureWorks" est une base de données de test créée par Microsoft et représente les ventes au détail de produit de cyclisme d'une entreprise fictive. L'objectif du projet est donc d'analyser les ventes de cette entreprise.
 
 Le projet implique l'utilisation de PostgreSQL pour créer le schéma, Pandas pour le traitement des données et psycopg2 pour le chargement des données dans la base de données.
 
